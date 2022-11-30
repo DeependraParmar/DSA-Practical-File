@@ -1,38 +1,33 @@
 #include <iostream>
-#include <math.h>
 using namespace std;
-bool isPrime(int n){
-    int sq = sqrt(n);
 
-    if(n==2){
-        return true;
-    }
-    else if(n%2 == 0){
-        return false;
-    }
-    else{
-        for(int i=3; i<=sq; i+=2){
-            if(n%i == 0){
-                return false;
-            }
-            else{
-                return true;
-            }
-        }
-    }
+int checkPrime(int num1, int index){
+   if(num1<2){
+      return 0;
+   }
+   if (num1 == 2 || num1==3){
+      return 1;
+   }
+   if (num1 % index == 0){
+      return 0;
+   }
+   if (index <= num1/2){
+      return 1;
+   }
+   int result=checkPrime(num1, index+1);
+
+   return (result);
 }
 int main(){
-    int n;
-    cout<<"Enter the value of n: ";
-    cin>>n;
+   int num;
+   cout<<"Enter the number for prime check: ";
+   cin>>num;
+   if (checkPrime(num,2)==1){
+      cout <<num<<" is a Prime number !";
+   }
+   else{
+      cout <<num<<" is non Prime!";
+   }
 
-    bool result = isPrime(n);
-    if(result){
-        cout<<"Prime Number..."<<endl;
-    }
-    else{
-        cout<<"Non-Prime Number..."<<endl;
-    }
-
-    return 0;
+   return 0;
 }
